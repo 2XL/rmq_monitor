@@ -1,5 +1,7 @@
-class Dropbox():
+from capture import Capture
 
+
+class Dropbox(Capture):
 
     def __init__(self):
 

@@ -1,5 +1,7 @@
-class GoogleDrive():
+from capture import Capture
 
+
+class GoogleDrive(Capture):
 
     def __init__(self):
 

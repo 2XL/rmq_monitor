@@ -11,18 +11,28 @@ class Monitor(object):
     def __init__(self, personal_cloud):
         print "constructor"
 
-        self.action = None
+        self.client = None
         if personal_cloud is None:
             raise NotImplemented
         else:
-            self.action = eval("{}".format(personal_cloud))()
+            self.client = eval("{}".format(personal_cloud))()
 
     def hello(self):
         #try:
-        self.action.hello()
+        self.client.hello()
         return 0
         #    return 0  # successfully logged to personal cloud service
         # except Exception as ex:
         #     print ex.message
         #     print traceback.print_tb(None)
         #     return 1
+
+    def start_client(self):
+        #try:
+        self.client.start()
+        return 0
+
+    def stop_client(self):
+        self.client.stop()
+        return 0
+

@@ -1,5 +1,7 @@
-class OwnCloud():
+from capture import Capture
 
+
+class OwnCloud(Capture):
 
     def __init__(self):
 

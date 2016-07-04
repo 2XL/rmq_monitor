@@ -1,4 +1,7 @@
-class StackSync():
+from capture import Capture
+
+
+class StackSync(Capture):
 
 
     def __init__(self):

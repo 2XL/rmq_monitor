@@ -1,5 +1,7 @@
-class Box():
+from capture import Capture
 
+
+class Box(Capture):
 
     def __init__(self):
 
