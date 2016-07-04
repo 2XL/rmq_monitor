@@ -5,14 +5,23 @@ class OwnCloud(Capture):
 
     def __init__(self):
 
+        super(self.__class__, self).__init__()
         self.whoami = (self).__class__.__name__
         print self.whoami
+        if self.platform_is_windows:
+            self.pc_cmd = "",
+            self.proc_name = ""
+        else:
+            self.pc_cmd = ""
+            self.proc_name = ""
+
+
 
     def hello(self):
         print "{} say hello".format(self.whoami)
 
-    def publish(self, src, tgt):
+    def start(self, src, tgt):
         print "{} say publish".format(self.whoami)
 
-    def download(self, remote, local):
+    def stop(self, remote, local):
         print "{} say download".format(self.whoami)

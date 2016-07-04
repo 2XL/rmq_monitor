@@ -5,11 +5,10 @@ from monitor import Monitor
 from hashlib import md5
 import sys
 
-
-
 # execute single test
 # nosetests publisher_test.py -- single test
 # nosetests /path/to/folder -- suit of test
+
 
 
 class MonitorTest(unittest.TestCase):
@@ -21,3 +20,9 @@ class MonitorTest(unittest.TestCase):
         monitor = Monitor(self.personal_cloud)
         result = monitor.hello()
         self.assertEqual(result, 0)
+
+
+
+    def test_start(self):
+        # initialize the personal_cloud client and check if the process exists
+        monitor.start()
