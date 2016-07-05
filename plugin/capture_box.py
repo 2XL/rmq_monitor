@@ -12,17 +12,23 @@ class Box(Capture):
             self.pc_cmd = "",
             self.proc_name = ""
             self.sync_folder = ""
+            self.sync_folder_cleanup = ""
         else:
             self.pc_cmd = ""
             self.proc_name = ""
             self.sync_folder = ""
+            self.sync_folder_cleanup = ""
 
 
     def hello(self):
         print "{} say hello".format(self.whoami)
 
-    def start(self):
-        print "{} say start".format(self.whoami)
-
-    def stop(self):
-        print "{} say stop".format(self.whoami)
+    # def start(self):
+    #     print "{} say start".format(self.whoami)
+    #     # self.sync_client = None
+    #     # self.monitor = None
+    #
+    # def stop(self):
+    #     print "{} say stop".format(self.whoami)
+    #     # self.sync_client = None
+    #     # self.monitor = None

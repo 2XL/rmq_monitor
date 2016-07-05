@@ -221,6 +221,7 @@ class Commands(object):
                 print "Its not private cloud"
             self.stereotype = body['msg']['test']['testProfile']  # if its defined then this will be loaded
             print '[START_TEST]: INFO: instance thread'
+            # aixo inicialza el sync client
             self.sync_client = Thread(target=self._pc_client)
             self.sync_client.start()
             # self.sync_client.start()
