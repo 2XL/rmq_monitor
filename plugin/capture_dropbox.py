@@ -9,11 +9,11 @@ class Dropbox(Capture):
         self.whoami = (self).__class__.__name__
         print self.whoami
         if self.platform_is_windows:
-            self.pc_cmd = "",
-            self.proc_name = ""
+            self.pc_cmd = "/Program Files (x86)/Dropbox/Client/Dropbox.exe",
+            self.proc_name = "Dropbox.exe"
         else:
-            self.pc_cmd = ""
-            self.proc_name = ""
+            self.pc_cmd = "sudo -H -u vagrant bash -c '/usr/local/bin/dropbox start'"
+            self.proc_name = "dropbox"
 
 
     def hello(self):

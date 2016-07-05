@@ -9,8 +9,8 @@ class GoogleDrive(Capture):
         self.whoami = (self).__class__.__name__
         print self.whoami
         if self.platform_is_windows:
-            self.pc_cmd = "",
-            self.proc_name = ""
+            self.pc_cmd = "/Program Files (x86)/Google/Drive/googledrivesync.exe",
+            self.proc_name = "googledrivesync.exe"
         else:
             self.pc_cmd = ""
             self.proc_name = ""

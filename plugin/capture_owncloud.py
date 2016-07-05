@@ -9,11 +9,11 @@ class OwnCloud(Capture):
         self.whoami = (self).__class__.__name__
         print self.whoami
         if self.platform_is_windows:
-            self.pc_cmd = "",
-            self.proc_name = ""
+            self.pc_cmd = "/Program Files (x86)/ownCloud/owncloud.exe",
+            self.proc_name = "owncloud.exe"
         else:
-            self.pc_cmd = ""
-            self.proc_name = ""
+            self.pc_cmd = "/vagrant/owncloudsync.sh"
+            self.proc_name = "owncloudsync"
 
 
 

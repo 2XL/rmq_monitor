@@ -10,11 +10,11 @@ class StackSync(Capture):
         print self.whoami
 
         if self.platform_is_windows:
-            self.pc_cmd = "",
-            self.proc_name = ""
+            self.pc_cmd = "/Users/vagrant/AppData/Roaming/StackSync_client/Stacksync.jar",
+            self.proc_name = "javaw.exe"
         else:
-            self.pc_cmd = ""
-            self.proc_name = ""
+            self.pc_cmd = "/usr/bin/stacksync"
+            self.proc_name = "java"
 
 
 
