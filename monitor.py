@@ -34,9 +34,9 @@ class Monitor(object):
 
         # holds the rmq outgoing
 
-
-
-
+    def emit(self, body=None):
+        print "[Emit]: metric emission"
+        self.sync_client.notify_status()
 
 
     def hello(self, body=None):

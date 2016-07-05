@@ -105,15 +105,15 @@ class Capture(object):
 
         try:
             if self.is_sync_client_running:  # the sync client is running
-                self.sync_client_proc = psutil.psutil.Process(self.sync_client_proc_pid)
+                self.sync_client_proc = psutil.Process(self.sync_client_proc_pid)
         except Exception as ex:
             print ex.message    # no sync client running
             return False
         # assign ram and cpu usage
         if self.sync_client_proc is not None:
             # we got a process and gota collect metrics
-            cpu_usage = int(math.ceil(self.proc.cpu_percent(0)))
-            ram_usage = self.proc.memory_info().rss
+            cpu_usage = int(math.ceil(self.sync_client_proc.cpu_percent(0)))
+            ram_usage = self.sync_client_proc.memory_info().rss
             metrics['cpu'] = cpu_usage
             metrics['ram'] = ram_usage
 
@@ -152,19 +152,23 @@ class Capture(object):
         try:
             metrics['files'] = int(num_files.split('\t')[0])
         except Exception as ex:
+            print ex.message
             print "invalid literal for... file counter"
 
+        try:
+            net_stats = self.traffic_monitor.notify_status()
 
-        net_stats = self.traffic_monitor.notify_statys()
-
-        metrics['data_rate_size_up'] = net_stats['data_rate']['size_up']
-        metrics['data_rate_size_down'] = net_stats['data_rate']['size_down']
-        metrics['data_rate_pack_up'] = net_stats['data_rate']['pack_up']
-        metrics['data_rate_pack_down'] = net_stats['data_rate']['pack_down']
-        metrics['meta_rate_size_up'] = net_stats['meta_rate']['size_up']
-        metrics['meta_rate_size_down'] = net_stats['meta_rate']['size_down']
-        metrics['meta_rate_pack_up'] = net_stats['meta_rate']['pack_up']
-        metrics['meta_rate_pack_down'] = net_stats['meta_rate']['pack_down']
+            # py_sniffer not unlocalizable
+            metrics['data_rate_size_up'] = net_stats['data_rate']['size_up']
+            metrics['data_rate_size_down'] = net_stats['data_rate']['size_down']
+            metrics['data_rate_pack_up'] = net_stats['data_rate']['pack_up']
+            metrics['data_rate_pack_down'] = net_stats['data_rate']['pack_down']
+            metrics['meta_rate_size_up'] = net_stats['meta_rate']['size_up']
+            metrics['meta_rate_size_down'] = net_stats['meta_rate']['size_down']
+            metrics['meta_rate_pack_up'] = net_stats['meta_rate']['pack_up']
+            metrics['meta_rate_pack_down'] = net_stats['meta_rate']['pack_down']
+        except Exception as ex:
+            print ex.message
 
         tags = ''
         if tags == '':
@@ -184,16 +188,12 @@ class Capture(object):
 
         self.rmq_channel.basic_publish(
             exchange='metrics',
-            routing_key=self.hostname, #
+            routing_key=self.hostname,
             body=msg)
 
         return True
         # asssign data and metadata from pysniffer
         # net_stats = self.traffic_monitor.notify_stats()
-
-
-
-
 
     def _test(self):
 
@@ -236,7 +236,6 @@ class Capture(object):
             except Exception as ex:
                 print ex.message
                 print "Couldn't load sync client"
-
 
     def start(self, body):
         self.personal_cloud = body['msg']['test']['testClient']
