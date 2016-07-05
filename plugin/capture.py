@@ -47,14 +47,22 @@ class Capture(object):
 
         # if none has been selected then, none network iface metric will be reported
         self.rmq_url = urlparse.urlparse(self.rmq_path_url)
-        self.rmq_connection = pika.BlockingConnection(
-            pika.ConnectionParameters(
-                host=self.rmq_url.hostname,
-                heartbeat_interval=5,
-                virtual_host=self.rmq_url.path[1:],
-                credentials=pika.PlainCredentials(self.rmq_url.username, self.rmq_url.password)
+
+        self.rmq_connection = None
+
+        try:
+            self.rmq_connection = pika.BlockingConnection(
+                pika.ConnectionParameters(
+                    host=self.rmq_url.hostname,
+                    heartbeat_interval=5,
+                    virtual_host=self.rmq_url.path[1:],
+                    credentials=pika.PlainCredentials(self.rmq_url.username, self.rmq_url.password)
+                )
             )
-        )
+        except Exception as ex:
+            print ex.message
+            exit(0)
+            # failed to create rabbit connection
         self.rmq_channel = self.rmq_connection.channel()
         self.rmq_channel.exchange_declare(exchange='metrics', type='fanout')
 
@@ -68,7 +76,6 @@ class Capture(object):
         self.stereotype_recipe = None
 
         self.monitor = None
-
 
         self.proc_name = None
         self.pc_cmd = None
