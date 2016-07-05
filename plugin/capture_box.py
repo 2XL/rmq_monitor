@@ -3,9 +3,9 @@ from capture import Capture
 
 class Box(Capture):
 
-    def __init__(self):
+    def __init__(self, hostname):
 
-        super(self.__class__, self).__init__()
+        super(self.__class__, self).__init__(hostname)
         self.whoami = (self).__class__.__name__
         print self.whoami
         if self.platform_is_windows:

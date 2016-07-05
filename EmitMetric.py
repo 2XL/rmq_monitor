@@ -182,6 +182,9 @@ class EmitMetric(object):
             metrics['disk'] = 1
         # assign add folder num of files metric
 
+
+
+
         if os.name == "nt":
             num_files = "123"
         elif os.name == "posix":

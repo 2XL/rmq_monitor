@@ -3,9 +3,9 @@ from capture import Capture
 
 class StackSync(Capture):
 
+    def __init__(self, hostname):
 
-    def __init__(self):
-        super(self.__class__, self).__init__()
+        super(self.__class__, self).__init__(hostname)
         self.whoami = (self).__class__.__name__
         print self.whoami
 
@@ -23,6 +23,8 @@ class StackSync(Capture):
 
     def hello(self):
         print "{} say hello".format(self.whoami)
+
+
 
     # def start(self):
     #     print "{} say start".format(self.whoami)

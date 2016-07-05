@@ -4,8 +4,8 @@
 ## rmq_montor
 
 monitor_rmq => calls:
-    * EmitMetric
-    * Commands
+    * EmitMetric: forward rmq outgoing response with  metrics
+    * Commands : handles rmq incoming requests
 
 
 monitor.py

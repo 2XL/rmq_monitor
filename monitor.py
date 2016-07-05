@@ -19,17 +19,24 @@ class Monitor(object):
         return cls._instance
 
     # name of the current dummyhost => the physical machine => ast10,ast12,ast13
-    def __init__(self, personal_cloud):
+    def __init__(self, personal_cloud=None, hostname=None):
         print "constructor"
-
-        self.client = None
+        self.hostname = hostname
+        self.sync_client = None
         if personal_cloud is None:
             raise NotImplemented
         else:
-            self.client = eval("{}".format(personal_cloud))()
+            self.sync_client = eval("{}".format(personal_cloud))(hostname)
 
         self.monitor_state = "Unknown"
+        self.traffic_monitor = None  # variable that holds the sniffer
         # instance a sniffer here
+
+        # holds the rmq outgoing
+
+
+
+
 
 
     def hello(self, body=None):
@@ -46,7 +53,7 @@ class Monitor(object):
             }
         }
 
-        self.client.hello(body)
+        self.sync_client.hello(body)
         return 0, "[Hello]: response"
         #    return 0  # successfully logged to personal cloud service
         # except Exception as ex:
@@ -71,8 +78,8 @@ class Monitor(object):
         }
 
         self.monitor_state = "start_monitor"
-        if not self.client.is_monitor_capturing:  # if not capturing start otherwise noop
-            self.client.start(body)
+        if not self.sync_client.is_monitor_capturing:  # if not capturing start otherwise noop
+            self.sync_client.start(body)
         return 0, "[Start]: response"
 
     '''
@@ -90,7 +97,7 @@ class Monitor(object):
         }
 
         self.monitor_state = "warmup_monitor"
-        self.client.warmup(body)
+        self.sync_client.warmup(body)
         return 0, "[Warmup]: response"
 
     '''
@@ -109,8 +116,8 @@ class Monitor(object):
         }
 
         self.monitor_state = "stop_monitor"
-        if self.client.is_monitor_capturing:  # if its capturing, stop it to capture
-            self.client.stop(body)
+        if self.sync_client.is_monitor_capturing:  # if its capturing, stop it to capture
+            self.sync_client.stop(body)
         # else:
         #     self.client.stop(body)  # remove this
 
