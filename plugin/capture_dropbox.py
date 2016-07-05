@@ -24,5 +24,6 @@ class Dropbox(Capture):
     def start(self):
         print "{} say start".format(self.whoami)
 
+
     def stop(self):
         print "{} say stop".format(self.whoami)

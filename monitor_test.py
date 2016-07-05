@@ -23,12 +23,12 @@ class MonitorTest(unittest.TestCase):
     def test_start_personal_cloud(self):
         # initialize the personal_cloud client and check if the process exists
         monitor = Monitor(self.personal_cloud)
-        monitor.start_client()
+        monitor.start()
 
 
     def test_stop_personal_cloud(self):
 
         monitor = Monitor(self.personal_cloud)
-        monitor.stop_client()
+        monitor.stop()
 
 
