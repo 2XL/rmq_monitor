@@ -24,10 +24,10 @@ class StackSync(Capture):
     def hello(self):
         print "{} say hello".format(self.whoami)
 
-    def start(self, src, tgt):
-        print "{} say publish".format(self.whoami)
+    def start(self):
+        print "{} say start".format(self.whoami)
 
-    def stop(self, remote, local):
-        print "{} say download".format(self.whoami)
+    def stop(self):
+        print "{} say stop".format(self.whoami)
 
 

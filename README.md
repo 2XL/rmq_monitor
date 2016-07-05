@@ -6,7 +6,13 @@
 monitor_rmq => calls:
     * EmitMetric
     * Commands
-    
+
+
+monitor.py
+
+1. has to allow launch personal cloud client and stop them
+2. 
+
 
 # 
 

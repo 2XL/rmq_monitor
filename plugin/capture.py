@@ -3,6 +3,7 @@ import subprocess
 import time
 import psutil
 
+
 class Capture(object):
 
     def __init__(self):
@@ -16,7 +17,6 @@ class Capture(object):
         self.is_client_running = False
         self.proc_name = None
         self.pc_cmd = None
-
 
     def _pc_client(self):
 
@@ -44,8 +44,6 @@ class Capture(object):
             except Exception as ex:
                 print ex.message
                 print "Couldn't load sync client"
-
-
 
 
     def emit(self, process_id=None):

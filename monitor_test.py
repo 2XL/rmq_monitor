@@ -10,19 +10,25 @@ import sys
 # nosetests /path/to/folder -- suit of test
 
 
-
 class MonitorTest(unittest.TestCase):
 
-    personal_cloud = "googledrive"
+    personal_cloud = "dropbox"
     # la plataforma se comprueba por script no por parametro
 
     def test_hello(self):
         monitor = Monitor(self.personal_cloud)
-        result = monitor.hello()
+        result = monitor.hello()  # hello es un hello world
         self.assertEqual(result, 0)
 
-
-
-    def test_start(self):
+    def test_start_personal_cloud(self):
         # initialize the personal_cloud client and check if the process exists
-        monitor.start()
+        monitor = Monitor(self.personal_cloud)
+        monitor.start_client()
+
+
+    def test_stop_personal_cloud(self):
+
+        monitor = Monitor(self.personal_cloud)
+        monitor.stop_client()
+
+
