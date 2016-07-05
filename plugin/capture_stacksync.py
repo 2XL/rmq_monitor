@@ -12,9 +12,11 @@ class StackSync(Capture):
         if self.platform_is_windows:
             self.pc_cmd = "/Users/vagrant/AppData/Roaming/StackSync_client/Stacksync.jar",
             self.proc_name = "javaw.exe"
+            self.sync_folder = "/Users/vagrant/stacksync_folder"
         else:
             self.pc_cmd = "/usr/bin/stacksync"
             self.proc_name = "java"
+            self.sync_folder = "stacksync_folder"
 
 
 

@@ -11,9 +11,11 @@ class Box(Capture):
         if self.platform_is_windows:
             self.pc_cmd = "",
             self.proc_name = ""
+            self.sync_folder = ""
         else:
             self.pc_cmd = ""
             self.proc_name = ""
+            self.sync_folder = ""
 
 
     def hello(self):

@@ -11,9 +11,11 @@ class Dropbox(Capture):
         if self.platform_is_windows:
             self.pc_cmd = "/Program Files (x86)/Dropbox/Client/Dropbox.exe",
             self.proc_name = "Dropbox.exe"
+            self.sync_folder = "/Users/vagrant/Dropbox"
         else:
             self.pc_cmd = "sudo -H -u vagrant bash -c '/usr/local/bin/dropbox start'"
             self.proc_name = "dropbox"
+            self.sync_folder = "Dropbox"
 
 
     def hello(self):

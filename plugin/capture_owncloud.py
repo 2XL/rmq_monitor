@@ -11,9 +11,12 @@ class OwnCloud(Capture):
         if self.platform_is_windows:
             self.pc_cmd = "/Program Files (x86)/ownCloud/owncloud.exe",
             self.proc_name = "owncloud.exe"
+            self.sync_folder = ""
         else:
             self.pc_cmd = "/vagrant/owncloudsync.sh"
             self.proc_name = "owncloudsync"
+            self.sync_folder = "owncloud_folder"
+
 
 
 

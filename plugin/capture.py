@@ -48,3 +48,9 @@ class Capture(object):
 
 
 
+    def emit(self, process_id=None):
+        print "Retrive generic psutil stats by process_id"
+        # retrieve stats by process id
+
+
+
